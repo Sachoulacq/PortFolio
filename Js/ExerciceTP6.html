@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Exercice1</title>
+		<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/F2D40097-282F-824C-8877-D3EF6B149617/main.js" charset="UTF-8"></script><style >
+
+			.disapear {
+				display: flex;
+			}
+
+
+		</style>
+
+	</head>
+    <body>
+    	<form>
+    	<fieldset>
+        <div>
+			<label for="civilite">Civilité :</label>
+					<select id="selectBox" name="civilite" >
+							<option  value="1" > Mme </option>
+							<option  value="2" > Mr</option>
+					</select>
+		</div>
+		<div>
+			<label for="nom">Nom :</label>
+				<input type="text" name="nom" minlength=2 maxlength=13  />
+		</div>
+		<div id="fille">
+			<label  style="eee" for="Nom de jeune fille">Nom de Jeune fille :</label>
+				<input type="text" name="Nom de Jeune fille" minlength=2 maxlength=13 />
+		</div>
+		<div>
+			<label for="Prénom">Prénom :</label>
+				<input type="text" name="email" required />
+		</div>
+		<label for="chiens" > Possédez-vous des chiens ? </label>
+		<div>
+			
+		 		<input type="radio" name="dog" id="dog1" checked > Oui
+				<input type="radio" name="dog" id="dog2" > Non <br/>
+		</div>
+		<div  class="sel" id="apparition">
+					<select  id="choice" >
+							<option     > Moins de 2 chiens. </option>
+							<option    > Entre 2 et 4 chiens.</option>
+							<option    > Plus de 4 chiens.</option>
+					</select>
+		</div>
+		<div>
+			<label>
+					<button>Valider</button>
+			</label>
+			</form>
+			<script>
+
+
+
+
+				var selectBoxJs = document.getElementById("selectBox");
+
+
+
+				selectBoxJs.onchange = function(e){
+				var desactiverJs=selectBoxJs.value;
+					if (desactiverJs==="1"){
+						document.getElementById("fille").setAttribute("style", "display:flex;");
+					}
+					if (desactiverJs==="2"){
+						document.getElementById("fille").setAttribute("style", "display:none;");
+				}
+			};
+
+
+			var dogJs1 = document.getElementById("dog1");
+
+			dogJs1.onclick = function(e) {
+				console.log("La personne est propriétaire d'un chien");
+				document.getElementById("apparition").setAttribute("style","display:flex;");
+		};
+
+			var dogJs2 = document.getElementById("dog2");
+
+			dogJs2.onclick = function(e) {
+				console.log("La personne n'a pas de chien");
+				document.getElementById("apparition").setAttribute("style","display:none;");
+		};
+
+			
+			var choiceJs = document.getElementById("choice");
+			choiceJs.onchange = function (){
+				var choixJs=choiceJs.value;
+				console.log(choixJs);
+			};
+
+
+
+			
+			
+
+			</script>
+		</div>
+	</fielset>
+	
+	</body>	
+</html>	
+
+<!--				function myFunction(){
+					var selectBoxJs = document.getElementById("selectBox");
+					var desactiverJs = selectBoxJs.value;
+					if (desactiverJs === "2"){
+						document.getElementById("fille").setAttribute("style", "display:none;");
+					}
+					if (desactiverJs === "1"){
+						document.getElementById("fille").setAttribute("style", "display:flex;");
+					}
+				};
+function dogFn(choix) {
+				if (choix == "Oui"){
+					console.log("La personne est propriétaire d'un chien");
+					document.getElementById("dogapear").setAttribute("class","disapear");
+				}
+				if (choix =="Non"){
+				console.log("La personne n'a pas de chien");
+				document.getElementById("dogapear").setAttribute("class","sel");
+				}
+			}function onChoice() {
+			var choicee = document.getElementById("choice");
+			var texte = choicee.value;
+
+			if (texte==1) {
+				console.log("Moins de 2 chiens.");
+			} else if (texte==2){
+				console.log("Entre 2 et 4 chiens");
+			} else if (texte==3) {
+				console.log("Plus de 4 chiens.");
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->

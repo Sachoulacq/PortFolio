@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>TP algorithmie</title>
+	<style>
+		.civilite-form div{
+			width: 380px;
+			display: flex;
+			justify-content: space-between;
+		}
+		.civilite-form div input{
+			width: 220px;
+		}
+		.civilite-hidden {
+			display: none !important;
+		}
+		.civilite-shown {
+			display: flex;
+		}
+	</style>
+</head>
+<body>
+	<form class="civilite-form">
+		<div>
+			<select id="civilite" name="civilite" onchange="selectChanged()">
+				<option value="1">Mr</option>
+				<option value="2">Mme</option>
+			</select>
+		</div>
+		<div>
+			<label for="lastName">Nom :</label>
+			<input type="text" name="lastName"/></div>
+		<div id="girlNameCont" class="civilite-hidden">
+			<label for="girlName">Nom de jeune fille :</label>
+			<input type="text" name="girlName"/></div>
+		<div>
+			<label for="firstName">Prénom :</label>
+			<input type="text" name="firstName"/></div>
+		<div><button type="button">Envoyer</button></div>
+	</form>
+<script>
+	var selectChanged = function (){
+		var selectEl = document.getElementById('civilite'),
+			selection = selectEl.value,
+			girlNameCont = document.getElementById('girlNameCont'),
+			prop;
+		if (selection == 1){
+			prop = "civilite-hidden";
+		}
+		if (selection == 2){
+			prop = "civilite-shown";			
+		}
+		girlNameCont.setAttribute("class",prop);
+	};
+// 1- réaliser un formulaire qui contient
+//	un select pour Mr ou Mme
+//  un input pour le nom
+//  un input pour le nom de jeune fille
+//  un input pout le prenom
+//  un bouton de validation du formulaire
+//	l'input pour le nom de jeune fille n'apparait que si 'Mme' est selectionné.
+//  pour se faire on utilisera l'attribut HTML evenementiel 'onchange' sur le select
+//  renseignez vous sur W3C pour voir le fonctionnement de onchange
+
+// 1- Bis : Ajouter un champ radio permettant de savoir si la personne est propriétaire 
+//	canin.
+// 	si oui faire apparaitre un champ select permettant de choisir :
+//	moins de 2 chiens
+//  entre 2 et 4 chiens
+//  plus de 4 chiens.
+// vous devrez reussir a faire apparaitre le resultat de la selectBox dans la console. 
+ 
+// 2- premier exercice algorithmique
+// on souhaite realiser le jeu "pierre feuille ciseaux";
+// comment peut-on s'y prendre ?
+// expliquer avec du texte
+// le joueur (utilisateur) choisi un chiffre entre 1 et 4 (equivalent à pierre, feuille, ciseaux)
+// l'ordinateur choisi un chiffre entre 1 et 4 (equivalent à pierre, feuille, ciseaux)
+// il dit qui a gagner !
+</script>
+</body>
+</html>

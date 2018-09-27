@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>TP console et deboggage</title>
+</head>
+<body>
+
+<script>
+/*
+En javascript la console de debug permet de maitriser l'interprétation de script que l'on écrit.
+Elle permet aussi de tester des instructions "à chaud".
+*/
+
+// 1- ouvrir la console et regarder ce qui apparait
+console.log("Hello ! Bon courage pour les TPs !");
+/* console.log(xxxxxxxx) permet d'afficher dans la console les détails d'une variable que l'on souhaite évaluer.*/
+
+// 2- pour un tableau comme pour un objet, la console propose de "découper" et d'afficher les éléments
+var tab = ["pierre","papier","ciseaux","pierre","papier","ciseaux","pierre","papier","ciseaux"];
+console.log(tab);
+// il est possible d'ouvrir les attributs et les refermer
+var obj = { nom : "cordovado", prenom : "jb", age : 39, parle : function(){ console.log("je parle !"); } };
+console.log(obj);
+
+// 3- elle permet aussi d'afficher les valeurs des conditions ou de réaliser une expression.
+var a = 12, b = 12;
+var calcul = function(c,d){
+	return c+d;
+};
+console.log(a === b);
+console.log(a+b);
+console.log(calcul);
+
+// 4- expliquer et tester ce qu'il se passe dans le cas suivant
+console.log(calcul(a+b));
+
+// 5- dans l'outil de développement, rendez-vous dans la partie 'source' afin d'afficher la source de ce document (ce fichier html);
+// 5- dans cette partie du script, il est possible de positionner des points d'arret. 
+// 5- ajouter un point d'arret à la ligne 28, du document. Pour ce faire, cliquer sur le numero de la ligne. un curseur bleu doit apparaitre.
+// 5- rafraichir la page avec CTRL+R
+// 5- l'execution du script doit attendre à la ligne 28.
+// 5- Pour relancer la page, soit on supprime le point d'arret, soit on lance la suite du script en appuyant sur play.
+</script>
+</body>
+</html>

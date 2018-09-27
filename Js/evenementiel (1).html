@@ -1,0 +1,92 @@
+<!doctype>
+<head>
+	<meta charset="UTF-8">
+	<title>HTML evenementiel</title>
+	<link rel="stylesheet" href="style.css"/>
+<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/F2D40097-282F-824C-8877-D3EF6B149617/main.js" charset="UTF-8"></script></head>
+
+<body id=dim>
+	<div class="clic" id= "pendantclic"> Cliquez Ici</div>
+	<img class="image" id="picture"  border="0" src="moi.jpg" width="100px" height="100px" >
+	<br/>
+	<input type="text" id="nom" > <br/>
+	<input type="text" id="surname" ><br/>
+	<input type="text" id="surname1" ><br/>
+	<input type="text" id="surname2" ><br/>
+	<input type="text" id="surname3" ><br/>
+	<div class="souris" id="cursor">
+		<div>
+			<div class="soussouris" id="suitCursor">
+			</div>
+		</div>
+	</div>
+	<script>
+		var pendantclicJs = document.getElementById("pendantclic");
+		pendantclicJs.onclick = function (e) {
+			console.log(e);
+		};
+
+
+		var nomJs = document.getElementById("nom");
+		nomJs.onkeyup = function (e) {
+			console.log(nomJs.value.toUpperCase());
+			nomJs.value = nomJs.value.toUpperCase();
+		};
+
+		var surnameJs = document.getElementById("surname");
+		surnameJs.onkeydown = function (e) {
+			console.log(surnameJs.value);
+		};
+
+		var surname1Js = document.getElementById("surname1");
+		surname1Js.onkeypress = function (e) {
+			console.log(surname1Js.value);
+		};
+
+		var surname2Js = document.getElementById("surname2");
+		surname2Js.onfocus = function (x) {
+			surname2Js.style.background="red";
+			
+		};
+		var surname3Js = document.getElementById("surname3");
+		surname3Js.onblur = function (x) {
+			surname3Js.value = surname3Js.value.toUpperCase();
+		};
+
+		var dimJs = document.getElementById("dim");
+		dimJs.onresize = function (e) {
+		var w = window.outerWidth;
+		var h = window.outerHeight;
+		var txt = "Window size: width=" + w + ", height=" + h; 
+		dimJs.innerText = txt;
+		};
+
+
+
+		
+		var container =document.getElementById("cursor");
+		var suitCursorJs =document.getElementById("suitCursor");
+		container.onmousemove = function (event){
+
+			var x = event.offsetX;
+			var y = event.offsetY;
+			console.log(x,y);
+			suitCursorJs.setAttribute('style','top:'+y+'px;left:'+x+'px;');
+		};
+		
+	</script>
+</body>
+
+<!--onclick="surClic()"
+document.getElementById("cursorText").innerHTML = 
+				"Coordonnées de la souris : X = "+ posX +"Y = " + posY;*
+							var posX;
+			var posY;
+			posX = e.clientX;
+			posY = e.clientY;
+
+		var cursorJs = document.getElementById("cursor");
+		cursorJs.onmousemove = function (e) {
+			console.log(e);
+		};
+			-->

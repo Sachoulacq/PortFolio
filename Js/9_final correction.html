@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>TP d'assimilation Js</title>
+	<style>
+		.container {
+			width: 100vw;
+		}
+		.margin-auto {
+			width: 200px;
+			margin: auto;
+		}
+		#horlogeHours{
+			font-size: 18px;
+		}
+		.hidden{
+			display : none;
+		}
+		.shown{
+			display : block;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="margin-auto" id="counter"></div>
+	<div class="margin-auto">
+		<span id="horlogeHours"></span><span class="twoPoints">:</span><span id="horlogeMinutes"></span><span class="twoPoints">:</span><span id="horlogeSecondes"></span>
+	</div>
+</div>
+
+<div>
+	<input type="text" name="number" id="numberInput"/>
+	<input type="text" name="string" id="stringInput"/>
+</div>
+
+
+<form method="GET" action="">
+	<div>
+		<label for="lastName">Nom :</label>
+		<input type="text" name="lastName" id="lastName"/>
+	</div>
+	<div>
+		<label for="firstName">Prénom :</label>
+		<input type="text" name="firstName" id="firstName"/>
+	</div>
+	<div>
+		<label for="email">Email :</label>
+		<input type="email" name="email" id="email"/>
+	</div>
+	<div>Aimez-vous les aliments suivant :</div>
+	<div>		
+		<label><input type="checkbox" name="aliment" value="banane"/>Banane</label>
+		<label><input type="checkbox" name="aliment" value="chocolat"/>Chocolat</label>
+		<label><input type="checkbox" name="aliment" value="vanille"/>Vanille</label>
+		<label><input type="checkbox" name="aliment" value="fraise"/>Fraise</label>
+		<label><input type="checkbox" name="aliment" value="citron"/>Citron</label>
+		<label><input type="checkbox" name="aliment" value="orange"/>Orange</label>
+		<label><input type="checkbox" name="aliment" value="menthe"/>Menthe</label>
+	</div>
+	<div class="shown" id="colisContainer">
+		<div>
+			<label id="cookies" class="hidden"><input type="checkbox" name="recevoir" value="cookies"/>oui, je souhaite recevoir des cookies</label>		
+		</div>
+		<div>
+			<label id="fruit" class="hidden"><input type="checkbox" name="recevoir" value="fruit"/>oui, je souhaite recevoir un panier de fruit</label>		
+		</div>
+		<div>
+			<label id="aromates" class="hidden"><input type="checkbox" name="recevoir" value="aromates"/>oui, je souhaite recevoir un panier d'aromates</label>		
+		</div>
+		<div>
+			<label id="jus" class="hidden"><input type="checkbox" name="recevoir" value="jus"/>oui, je souhaite recevoir de jus préssé</label>		
+		</div>
+		<div>
+		<div id="envoiPostal" class="hidden">
+			<div>
+				<label for="adresse">adresse :</label>
+				<input type="text" name="adresse" id="adresse"/>
+			</div>
+			<div>
+				<label for="codepostal">code postal :</label>
+				<input type="text" name="codepostal" id="codepostal"/>
+			</div>
+			<div>
+				<label for="city">ville :</label>
+				<input type="text" name="city" id="city"/>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	<button type="button" id="sendBtn">Envoyer</button>
+</form>
+
+<script>
+// ceci est le tp final d'assimilation pour le javascript pur et dur.
+// biensur l'algorithmie n'est pas finie mais les connaissances vont s'affirmer au fils du temps.
+
+
+/////// 1- COMPTE A REBOURS
+// 1-1 réaliser un compte à rebours de 10 vers 0. 
+// 1-2 quand le compte a rebours est à 2 : le numéro n'est pas affiché mais le message "à vos marques" est inscrit en rouge.
+// 1-3 quand le compte à rebours est à 1 : le numéro n'est pas affiché mais le message "pret ?!" est inscrit en orange.
+// 1-4 quand le compte à rebours arrive à 0 : le numéro n'est pas affiché mais le message "PARTEZ !!" est inscrit en vert et en gras. (le compte à rebours s'arrete).
+///////////////////////////////////////////////////////////
+var counter = 10, counterEl = document.getElementById('counter');
+var avm = "<span style='color: red;'>A vos Marques !!!</span>";
+var p = "<span style='color: orange;'>Pret ?</span>";
+var P = "<span style='color: green;'><b>PARTEZ !!!</b></span>";
+var inter = setInterval(function(){
+	
+	/*if (counter === 2){
+		counterEl.innerHTML = avm;
+	}else if (counter === 1){
+		counterEl.innerHTML = p;
+	}else if (counter === 0){
+		counterEl.innerHTML = P;
+	}else{
+		counterEl.innerHTML = "<span>"+counter+"</span>";
+	}*/
+	
+	switch (counter){
+		case 2 : counterEl.innerHTML = avm; break;
+		case 1 : counterEl.innerHTML = p; break;
+		case 0 : counterEl.innerHTML = P; break;
+		default : counterEl.innerHTML = "<span>"+counter+"</span>";break;
+	}
+	
+	
+	counter --;
+	if (counter < 0){
+		clearInterval(inter);
+	}
+}, 1000);
+
+/////// HORLOGE
+// un p'tit bout de théorie : 
+// travail avec la date.
+// pour obtenir la date courante, en js c'est trés simple : 
+// var d = new Date();
+// la variable 'd' est un objet Date.
+// Sun Sep 09 2018 20:26:27 GMT+0200 (heure d’été d’Europe centrale)
+// utiliser la console pour explorer et découvrir l'objet Date.
+// 
+//
+// le timestamp est une convention de temps en programmation
+// Le timestamp (unix) désigne le nombre de secondes écoulées depuis le 1er janvier 1970 à minuit UTC précise.
+// obtenir le timestamp depuis un objet date se fait avec .getTime();
+//
+//
+// l'objet date est un objet puissant mais compliqué. Tenter de créer des objets dates ayant des dates différentes de la date courante.
+//
+////////// 2- CREER UNE HORLOGE
+// 2-1 Avec l'aide de l'objet date, afficher l'heure sur la page 
+// 2-2 biensur à chaque seconde, l'affichage doit être juste ;) 
+//////////////////////////////////////////////////////////////
+var hourEl = document.getElementById('horlogeHours');
+var minuteEl = document.getElementById('horlogeMinutes');
+var secondeEl = document.getElementById('horlogeSecondes');
+/*function lazyPopulateHorloge(){	
+	var d = new Date(), dateString = d.toLocaleTimeString(), 
+		dateArray = dateString.split(':');
+	var hourStr = dateArray[0], minStr = dateArray[1], secStr = dateArray[2];
+	hourEl.innerText = hourStr;
+	minuteEl.innerText = minStr;
+	secondeEl.innerText = secStr;
+}*/
+function populateHorloge(){	
+	var d = new Date();
+	var h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
+	var hourStr = h < 10 ? '0'+ h : h;
+	var minStr = m < 10 ? '0'+ m : m;
+	var secStr = s < 10 ? '0' + s : s;
+	hourEl.innerText = hourStr;
+	minuteEl.innerText = minStr;
+	secondeEl.innerText = secStr;
+}
+//lazyPopulateHorloge();
+populateHorloge();
+setInterval(function(){
+	//lazyPopulateHorloge();
+	populateHorloge();
+}, 1000);
+
+///////// 3- Formulaire
+/// une nouvelle fonction isNaN(xxxx);
+/// vous vous souvenez ? NaN ? Not a Number
+/// exe : 25 - 'hjhj'
+/// --> NaN
+/////////
+// 3-1 réaliser un champ text dans lequel seul les chiffres sont possibles.
+// 3-2 réaliser un champ text dans lequel seul les caracteres non numeriques sont possibles.
+// 3-3 sur le champ text de caractères non numeriques, la premiere lettre doit toujours être en Majuscule.
+//////////////////////// 
+var numberInputEl = document.getElementById('numberInput');
+var stringInputEl = document.getElementById('stringInput');
+
+
+function onkeyupFn(e){
+	/*var inputEl = e.target, val = inputEl.value;
+	var debutStr = '', lastChar= '';
+	for(var i = 0; i < val.length; i ++){
+		if ( i === (val.length -1)){
+			lastChar+= val[i];
+		}else{
+			debutStr+= val[i];
+		}
+	}
+	if (isNaN(lastChar)){
+		inputEl.value = debutStr;
+	}else{
+		inputEl.value = val;
+	}*/
+	var inputEl = e.target, val = inputEl.value;
+	var numberStr = '', charStr = '';
+	for(var i = 0; i < val.length; i ++){
+		var charact = val[i];
+		if (isNaN(charact) || charact === ' '){
+			charStr += charact;
+		}else{
+			numberStr += charact;
+		}
+	}
+	
+	if (inputEl.name === 'string'){
+		//// zerizuiruozieruie zuriezuriuze
+		//// Zerizuiruozieruie Zuriezuriuze
+		var charStrTrimArray = charStr.split(' ');
+		var newCharUpperCase = charStrTrimArray.map(function(tab){
+			var s = '';
+			for(var i = 0; i < tab.length ; i++){
+				var c = tab[i];
+				if (i === 0){
+					s += c.toUpperCase();
+				}else{
+					s += c.toLowerCase();
+				}
+			}
+			return s;
+		});
+		val = newCharUpperCase.join(' ');
+	}else{
+		val = numberStr;
+	}
+	inputEl.value = val;
+}
+numberInputEl.onkeyup = onkeyupFn;
+stringInputEl.onkeyup = onkeyupFn;
+
+///////// 4- Formulaire 
+// 4-1 réaliser un formulaire nom, prénom, email, bouton
+//	   afficher les données dans la console, au clic du bouton
+// 4-2 Ajouter des checkboxs afin de savoir si la personne aime 
+//		la banane 
+//		le chocolat 
+//		la vanille 
+//		la fraise 
+//		le citron 
+//		l'orange 
+//		la menthe 
+//		(choix multiple possible)
+//		et afficher les données au clic du bouton
+// 4-3 si la personne aime le chocolat et/ou la vanille 
+//		demandez lui si elle souhaite recevoir des cookies (checkbox)
+//		si la personne aime la banane 
+//		demandez lui si elle souhaite recevoir un panier de fruit (checkbox)
+//		si la personne aime la menthe 
+//		demandez lui si elle souhaite recevoir un panier d aromates (checkbox)
+//		si la personne aime les autres choix 
+//		demandez lui si elle souhaite recevoir une collection de jus pressés. (checkbox)
+//		MAIS SI tout est coché, on ne lui propose rien du tout.
+// 4-4 si la personne doit recevoir un colis, 
+//		faire apparaître un formulaire d'envoi postal adresse, code postal, ville.
+//		et afficher les données au clic du bouton
+////////////////////////
+var nomEl = document.getElementById('lastName');
+var prenomEl = document.getElementById('firstName');
+var emailEl = document.getElementById('email');
+var sendBtnEl = document.getElementById('sendBtn');
+var checkboxes = document.getElementsByName('aliment');
+var checkboxesSend = document.getElementsByName('recevoir');
+
+sendBtnEl.onclick = function(){
+	var nom = nomEl.value, 
+		prenom = prenomEl.value,
+		email = emailEl.value;
+
+	console.log(nom, prenom, email);
+}
+
+function chocolatFn(inputEl){
+	var chocoEl, vanilleEl;
+	for (var i = 0; i < checkboxes.length; i ++){
+		var checkBoxEl = checkboxes[i];
+		if (checkBoxEl.value === 'chocolat'){
+			chocoEl = checkBoxEl;
+		}
+		if (checkBoxEl.value === 'vanille'){
+			vanilleEl = checkBoxEl;
+		}
+	}
+	var shown = chocoEl.checked || vanilleEl.checked;
+	var labelEl = document.getElementById('cookies');	
+	if (shown){
+		labelEl.className = "shown";
+	}else{
+		labelEl.className = "hidden";
+	}
+}
+function bananeFn(inputEl){
+	var labelEl = document.getElementById('fruit');	
+	if (inputEl.checked){
+		labelEl.className = "shown";
+	}else{
+		labelEl.className = "hidden";
+	}
+}
+function mentheFn(inputEl){
+	var labelEl = document.getElementById('aromates');	
+	if (inputEl.checked){
+		labelEl.className = "shown";
+	}else{
+		labelEl.className = "hidden";
+	}
+}
+function otherFn(inputEl){
+	var citronEl, orangeEl, fraiseEl;
+	for (var i = 0; i < checkboxes.length; i ++){
+		var checkBoxEl = checkboxes[i];
+		if (checkBoxEl.value === 'citron'){
+			citronEl = checkBoxEl;
+		}
+		if (checkBoxEl.value === 'orange'){
+			orangeEl = checkBoxEl;
+		}
+		if (checkBoxEl.value === 'fraise'){
+			fraiseEl = checkBoxEl;
+		}
+	}
+	var shown = citronEl.checked || orangeEl.checked || fraiseEl.checked;
+	var labelEl = document.getElementById('jus');	
+	if (shown){
+		labelEl.className = "shown";
+	}else{
+		labelEl.className = "hidden";
+	}
+}
+function checkAll(){
+	var nbCheckboxCount = 0;
+	var colisContainerEl = document.getElementById('colisContainer');
+	for (var i = 0; i < checkboxes.length; i ++){
+		var checkBoxEl = checkboxes[i];
+		if (checkBoxEl.checked){
+			nbCheckboxCount++;
+		}
+	}
+	if (nbCheckboxCount === checkboxes.length){
+		colisContainerEl.className = 'hidden';
+	}else{
+		colisContainerEl.className = 'shown';
+	}
+}
+function alimentClickFn(ev){
+	var inputEl = ev.target, type = inputEl.value;
+	if (type === 'chocolat' || type === 'vanille'){
+		chocolatFn(inputEl);
+		checkAll();
+		return;
+	}
+	if (type === 'banane'){
+		bananeFn(inputEl);
+		checkAll();
+		return;
+	}
+	if (type === 'menthe'){
+		mentheFn(inputEl);
+		checkAll();
+		return;
+	}	
+	otherFn(inputEl);
+	checkAll();
+}
+
+for (var i = 0; i < checkboxes.length; i ++){
+	var alimentEl = checkboxes[i];
+	alimentEl.onclick = alimentClickFn;
+}
+
+function checkSendShown(){
+	var shown = false;
+	for (var i = 0; i < checkboxesSend.length; i ++ ){
+		var sendEl = checkboxesSend[i];
+		shown = shown || sendEl.checked;
+	}
+	var envoiPostalEl = document.getElementById('envoiPostal');
+	envoiPostalEl.className = shown? 'shown': 'hidden';
+}
+
+for (var i = 0; i < checkboxesSend.length; i ++ ){
+	var sendEl = checkboxesSend[i];
+	sendEl.onclick = checkSendShown;
+}
+
+</script>
+</body>
+</html>

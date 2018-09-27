@@ -1,0 +1,159 @@
+body {
+  margin: 0px;
+}
+.header {
+  background-image: url("../issets/img_dev.png");
+  height: 750px;
+  background-position: center center;
+  background-size: cover;
+}
+.relouu{
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex {
+  display: flex;
+}
+.titre {
+  opacity: 0.5;
+  border: 3px double black;
+  background-color: red;
+  text-align: center;
+  width: 500px;
+  margin-left: auto;
+  margin-top: 350px;
+  margin-right: auto;
+  animation-name: example;
+  animation-duration: 2s;
+  position: relative;
+}
+.logo {
+  background-color: darkblue;
+  width: 100px;
+  height: 100px;
+  margin-top: 50px;
+  margin-left: 20px;
+  position: absolute;
+  text-align: center;
+}
+@keyframes example {
+  from {background-color: white; left: 0px; top: -350px;}
+  to {background-color: red; left: 0px; top: 0px;}
+}
+@keyframes example2 {
+  from {left: -500px; top: 0px;}
+  to {left: 0; top: 0px;}
+}
+#navbar {
+  z-index: 99;
+  overflow: hidden;
+  background-color: orangered;
+  position: sticky;
+  top: 0;
+}
+#navbar > div {
+  animation-name: example2;
+  animation-duration: 2s;
+  position: relative;
+}
+#navbar a {
+  color: #c40c0ce1;
+  text-decoration: none;
+  font-size: 30px;
+}
+#navbar a:hover {
+  background-color: blue;
+  color: red;
+  text-align: center;
+}
+.aboutme {
+  color: purple;
+  position: relative;
+  background-color: rgb(32, 32, 212);
+}
+.desc { 
+  border: 2px solid red;
+  width: 100%;
+  padding: 20px;
+  
+}
+.desc2 {
+  border: 2px solid blue;
+  width: 100%;
+  padding: 20px;
+}
+.comp1,.comp2,.comp3{ 
+  border: 1px solid black;
+  margin-right: 50px;
+  margin-bottom: 30px;
+  width: 60px;
+  
+}
+.disp1,.disp2,.disp3 {
+  display: flex;
+}
+.compet{
+  background-color: dimgray;
+  width: 100%;
+}
+.gauche {
+  border: 2px solid red;
+  width: 50%;
+}
+.right {
+  border: 2px dashed blue;
+  width: 50%;
+}
+.lang1,.lang2 {
+  border: 1px solid black;
+  margin-right: 50px;
+  margin-bottom: 30px;
+}
+.clear {
+  clear: both;
+}
+.txtpro {
+  width: 100%;
+  border: 2px solid red;
+}
+.idkpro {
+  width: 100%;
+  border: 2px solid blue;
+}
+.bord {
+  margin-bottom: 30px; 
+  width: 60%;
+  height: 30px;
+  display: block;
+  position: relative;
+  background-color: red;
+}
+.jauge-remplissage {
+  transition: all 0.3s linear 0s;
+  background-color: rgb(17, 47, 218);
+  width: 0%;
+  height: 30px;
+  position: absolute;
+  margin-bottom: 30px; 
+}
+
+.bord:hover .jauge-remplissage {
+  width: 80%;
+}
+.project{
+  background-color: blue;
+}
+.pied {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background-color: bisque;
+}
+.logo1, .logo2 {
+  background-color: blueviolet;
+  width: 100px;
+  height: 100px;
+  
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>TP evenementiel HTML</title>
+	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/F2D40097-282F-824C-8877-D3EF6B149617/main.js" charset="UTF-8"></script><style>
+		body{
+			margin: 0;
+			padding: 0;
+			background: black;
+			width:100vw;
+			height:100vh;
+		}
+		#mini {
+			position: absolute;
+			pointer-events: none;
+		}
+		#mini > div {
+			height: 30px;
+			width: 30px;
+			border-radius: 20px;
+			background: white;
+			position: relative;
+			top: -15px;
+			left: -15px;
+			pointer-events: none;
+		}
+	</style>
+</head>
+<body>
+<input id="inputText" type="text"/>
+<div id='mini'>
+	<div></div>
+</div>
+<img id='hdimg' style="width: 100vw;" /><button id='btnimg'>image</button>
+<script>
+/**
+	il existe des attributs html, directement liés aux fonctions javascript
+	cela permet de déclencher les fonctions quand l'évènement souhaité est réalisé
+	voici quelques attributs évènementiels :
+--------------------------------------
+		onclick
+		onmouseover
+		onmouseenter
+		onmouseleave
+--------------------------------------
+		onkeyup
+		onkeydown
+		onkeypress
+		onfocus
+		onblur
+		onchange
+		onsubmit
+---------------------------------------
+		onresize
+		onscroll
+---------------------------------------
+		onload
+		onerror
+---------------------------------------		
+	ces attributs sont comme les propriètés d'un objet, 
+	ils ne fonctionnent pas tous sur tous les éléments, 
+	mais ça reste le cas pour la pluspart.
+	
+	
+	Tester les attributs sur des éléments html.
+	
+	
+	rappel :
+	
+	dans l'html :
+	<div class="ma-classe" onclick="nomDeMaFonction()">cliquez-moi !</div>
+	
+	dans le js :
+	function nomDeMaFonction(){
+		// instruction de la fonction.
+	}
+	OU
+	var nomDeMaFonction = function (){
+		// instruction de la fonction.
+	}
+	
+	Pour ces mêmes attributs, il est possible de ne pas passer par l'html,
+	mais de developper directement en Javascript
+	exemple :
+	<div class="ma-classe" onclick="nomDeMaFonction()">cliquez-moi !</div>
+	on peut ecrire à la place :
+	//html
+	<div class="ma-classe" id="maDiv">cliquez-moi !</div>
+	//js
+	var laDiv = document.getElementById('maDiv');
+	laDiv.onclick = function(){
+	
+	};
+	Dans ce cas, de figure, 
+	quel est l'argument qui est passé par defaut ?
+	laDiv.onclick = function(e){
+		//faire un console.log de e pour le découvrir.
+	};
+	comment puis-je obtenir l'equivalent du this ?
+	
+	En utilisant cet element (pour l'attribut html e représente event)
+	trouver comment 
+	
+	1- pour les evenements de souris, je peux obtenir la position du curseur.
+	* utiliser cela pour deplacer une div à l'identique que le cusreur.
+	*/
+	document.body.onmousemove = function(e) {
+	  var posX = e.clientX;
+	  var posY = e.clientY;
+	  var mini = document.getElementById('mini');
+	  mini.setAttribute('style','top:'+posY+'px; left:'+posX+'px');
+	}
+	
+	/*
+	2- pour les evenements des touches ecrire dans la console et donner la difference entre onkeydown, onkeyup, onkeypress.
+	* utiliser cela pour ecrire dans la console, à l'identique d'une texte ecrit par l'utilisateur dans un champ de texte.
+	*/
+	var inputText = document.getElementById('inputText');
+	inputText.onkeyup = function(e){
+		console.clear();
+		console.log(inputText.value);
+		console.log(e.target.value);
+	}
+	/*
+	3- pour les evenements de fenetre 
+	* utiliser la fonction afin d'écrire en temps réel, la taille de la fenetre.
+	*/
+	window.onresize = function(e){
+		var w = e.target.innerWidth;
+		var h = e.target.innerHeight;
+		console.clear();
+		console.log("largeur : "+w+" px, hauteur : "+h+" px");
+	}
+	
+	/*
+	
+	4- pour les evenements de chargement
+	* trouver une image 4k (au moins 5000px), utiliser la balise img sans mettre l'attribut src !
+	* utiliser le js pour controler la balise img (var imgEl = document.getEL......)
+	* attribuer la source : img.src = .......url......
+	* utiliser onload/onerror
+	*/
+	var btn = document.getElementById('btnimg');
+	//https://images.alphacoders.com/789/789452.jpg
+	btn.onclick = function(){
+		var imgEl = document.getElementById('hdimg');
+		imgEl.src = 'https://images.alphacoders.com/789/789452.jpg';
+		imgEl.onload = function(){
+			console.log('image chargée !');
+		}
+		imgEl.onerror = function(){
+			console.log('erreur image');
+		}
+	};
+	/*
+	
+**/
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Tp chat noir & chat blanc</title>
+	<style>
+		main {
+			width: 100vw;
+		}
+		main .damier{
+			width: 400px;
+			margin: 25px auto;
+		}
+		main .damier > div{
+			margin: auto;
+			width: 60px;
+		}
+		main .damier .ligne{
+			width: 100%;
+			display: flex;
+			flex-wrap: nowrap;
+		}
+		main .damier .ligne > div {
+			width: 40px;
+			height: 40px;
+			cursor: pointer;
+		}
+		main .damier .ligne > div.black {
+			background: black;
+			border: 1px solid black;
+		}
+		main .damier .ligne > div.white {
+			border: 1px solid black;
+			background: white;
+		}
+		main .damier .ligne > div.grey {
+			border: 1px solid black;
+			background: grey;
+		}
+	</style>
+</head>
+<body>
+<!--- INTERDIT NE PAS TOUCHER ---->
+<main>
+	<div class="damier" id="damier"></div>
+	<div class="damier">
+		<div>
+			<button onclick="launch()">Lancer</button>
+		</div>
+	</div>
+</main>
+<!--- INTERDIT NE PAS TOUCHER ---->
+<!--- INTERDIT NE PAS TOUCHER ---->
+<script type="text/javascript">
+/////////////////INTERDIT NE PAS TOUCHER//////////////////////
+var damier_html,damier_tab,damier_obj,damier_str,cb = 'black',cw = 'white';
+var e=document.getElementById("damier"),a={},o=[],r="";var t,i,v=10,c,n;for(t=0;t<v;t++){var l=document.createElement("div");l.className="ligne";a[t]={};var h=[];for(i=0;i<v;i++){var d=document.createElement("div");var f=Math.floor(Math.random()*100)%2?true:false;var s=(t+i)%2?f?cb:cw:cw;var u=(t+i)%2?f?1:0:0;d.className=s;d.onclick=function(e){var a=e.target.className;if(a==="grey"){a=cw}e.target.className=a===cw?cb:cw};l.appendChild(d);a[t][i]=s;h.push(u);r+=u}e.appendChild(l);o.push(h);r+=",";damier_html=e;damier_obj=a;damier_tab=o;damier_str=r}
+/////////////////INTERDIT NE PAS TOUCHER//////////////////////
+//////////////////////////////////////////////////////////////
+//					EXERCICES
+// Avec l'aide du bouton Envoyer réaliser les exercices : 
+// conseil : respecter l'ordre de l'exercice ;)
+//		
+function launch(){
+	/// PART I
+	countDamierStr(damier_str);
+	countDamierTab(damier_tab);
+	countDamierObj(damier_obj);
+	countDamierHtml(damier_html);
+	/// PART II
+	resoudreDamierStr(damier_str);
+	resoudreDamierTab(damier_tab);
+	resoudreDamierObj(damier_obj);
+	resoudreDamierHtml(damier_html);
+}
+//////////////////////////PART I//////////////
+//////////////////////////////////////////////
+/// 1-1 regarder la liste de caractere de la fonction,
+////	1-2 compter le nombre de chats noirs 1 présents dans la chaine
+function countDamierStr(damier){
+   var i, nb = 0;
+   for (i=0; i<damier.length; i++) {
+       var char = damier[i];
+       if(char == 1){
+           nb++;
+       }
+   }
+   console.log(nb);
+};
+
+countDamierStr(damier);
+/// 2-1 regarder la tableau de chiffre de la fonction,
+//// 	2-2 compter le nombre de chiffre 1 dans le tableau
+function countDamierTab(damier){
+   var i, nb = 0;
+   for (i=0; i<damier.length; i++) {
+       var char = damier[i];
+       if(char == 1){
+           nb++;
+       }
+	console.log(nb);
+}
+/// 3-1 regarder l'objet de la fonction,
+//// 	3-2 compter le nombre de valeurs de 'black' dans l'objet
+function countDamierObj(damier){
+	console.log(damier);
+}
+/// 4-1 regarder l'element Html,
+//// 	4-2 compter le nb de cases 'black' dans le damier
+function countDamierHtml(damier){
+	console.log(damier); // element damier
+	console.log(damier.children); // collection d'enfants de l'element (ligne);
+}
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+
+//////////////////////////PART II/////////////
+//////////////////////////////////////////////
+/// 5-1 regarder la liste de caractere de la fonction,
+//// 	5-2 utiliser la fonction pour n'obtenir que des 0
+function resoudreDamierStr(damier){
+	//console.log(damier);
+}
+///////////////////////////////////////
+/// 6-1 regarder la tableau de chiffre de la fonction,
+//// 	6-2 utiliser la fonction pour n'obtenir que des tableaux ayant 0
+function resoudreDamierTab(damier){
+	//console.log(damier);
+}
+///////////////////////////////////////
+/// 7-1 regarder l'objet de la fonction,
+//// 	7-2 utiliser la fonction pour n'avoir que des valeurs de blanc dans l'objet
+function resoudreDamierObj(damier){
+	//console.log(damier);
+}
+///////////////////////////////////////
+/// 8-1 regarder l'element Html,
+//// 	8-2 Transformer les enfants des lignes, les cases noires doivent devenir blanches.
+////	8-3 Cette transformation se fait toutes les 0.2s par case;
+function resoudreDamierHtml(damier){
+	//console.log(damier); // element damier
+	//console.log(damier.children); // collection d'enfants de l'element (ligne);
+}
+///////////////////////////////////////
+///////////////////////////////////////
+///////////////////////////////////////
+
+//////////////////////////PART III/////
+///////////////////////////////////////
+/// utiliser les fonctions pour transformer tous les chats blancs en chats 
+/// noires dès qu'un chat noir est trouvé, pour chaque type du damier. 
+///////////////////////////////////////
+//////////////////////////PART IV//////
+///////////////////////////////////////
+/// utiliser les fonctions pour transformer tous les chats blancs en chats 
+/// noires dès qu'un chat noir est trouvé mais 
+/// le processus s'arrete au prochain vrai chat noir, pour chaque type du damier. 
+///////////////////////////////////////
+///////////////////////////////////////
+///////////////////////////////////////
+///////////////////////////////////////
+</script>
+</body>
+</html>
